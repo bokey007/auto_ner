@@ -50,6 +50,7 @@ dependencies:
   - xz=5.2.10=h5eee18b_1
   - zeromq=4.3.4=h9c3ff4c_1
   - zlib=1.2.13=h5eee18b_0
+  - pip
   - pip:
     - altair==4.2.2
     - annotated-types==0.5.0
