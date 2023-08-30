@@ -27,6 +27,7 @@ def ensure_spacy_models_installed():
         try:
             # Try loading the model, this will raise an exception if it's not installed
             spacy.load(model)
+            print("model loaded")
         except OSError:
             print(f"Installing {model}...")
             subprocess.call(["python", "-m", "spacy", "download", model])
