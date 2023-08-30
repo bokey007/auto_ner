@@ -20,6 +20,15 @@ from spacy import displacy
 
 # Get absolute path to the current script's directory
 
+def ensure_spacy_models_installed():
+    models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"]
+    for model in models:
+        try:
+            spacy.load(model)
+        except OSError:
+            print(f"Installing {model}...")
+            spacy.cli.download(model)
+
 def ensure_folders_exist(script_dir):
     images_path = os.path.join(script_dir, "images")
     saved_model_path = os.path.join(script_dir, "saved_models")
@@ -31,6 +40,8 @@ def ensure_folders_exist(script_dir):
     # Create the 'saved_model' directory if it doesn't exist
     if not os.path.exists(saved_model_path):
         os.makedirs(saved_model_path)
+
+ensure_spacy_models_installed()
 
 # Get absolute path to the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
