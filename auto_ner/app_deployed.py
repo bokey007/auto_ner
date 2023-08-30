@@ -21,17 +21,17 @@ import subprocess
 
 # Get absolute path to the current script's directory
 
-def ensure_spacy_models_installed():
-    models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"]
-    for model in models:
-        try:
-            # Try loading the model, this will raise an exception if it's not installed
-            print("before model loading")
-            spacy.load(model)
-            print("model loaded")
-        except OSError:
-            print(f"Installing {model}...")
-            subprocess.call(["python3", "-m", "spacy", "download", model])
+# def ensure_spacy_models_installed():
+#     models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"]
+#     for model in models:
+#         try:
+#             # Try loading the model, this will raise an exception if it's not installed
+#             print("before model loading")
+#             spacy.load(model)
+#             print("model loaded")
+#         except OSError:
+#             print(f"Installing {model}...")
+#             subprocess.call(["python3", "-m", "spacy", "download", model])
 
 
 def ensure_folders_exist(script_dir):
@@ -46,7 +46,7 @@ def ensure_folders_exist(script_dir):
     if not os.path.exists(saved_model_path):
         os.makedirs(saved_model_path)
 
-ensure_spacy_models_installed()
+# ensure_spacy_models_installed()
 
 # Get absolute path to the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
