@@ -20,7 +20,6 @@ from spacy import displacy
 saved_models_dir = "saved_models/"
 nlp_models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"] + [os.path.join(saved_models_dir, f"{model_name}") for model_name in os.listdir(saved_models_dir)]
 
-
 # fuction to load the csv file and extract sentences and tags
 def load_data_from_csv(file):
     df = pd.read_csv(file, encoding="latin-1")
@@ -289,17 +288,25 @@ def gen_ai():
         st.write(doc)
 
 
-# Streamlit App
-st.set_page_config(page_title="NER Model Experimentation")
+def main():
 
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Online Inference", "Model Training", 
-                                  #"Evaluation Metrics", 
-                                  "GEN AI"])
+    # Streamlit App
+    st.set_page_config(page_title="NER Model Experimentation")
 
-if page == "Online Inference":
-    online_inference()
-elif page == "Model Training":
-    model_training()
-elif page == "GEN AI":
-    gen_ai()
+    st.sidebar.title("Navigation")
+    page = st.sidebar.radio("Go to", ["Online Inference", "Model Training", 
+                                    #"Evaluation Metrics", 
+                                    "GEN AI"])
+
+    if page == "Online Inference":
+        online_inference()
+    elif page == "Model Training":
+        model_training()
+    elif page == "GEN AI":
+        gen_ai()
+
+
+# call main fuction
+if __name__=="__main__":
+    main() 
+
