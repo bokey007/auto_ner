@@ -31,7 +31,7 @@ def ensure_spacy_models_installed():
             print("model loaded")
         except OSError:
             print(f"Installing {model}...")
-            subprocess.call(["python", "-m", "spacy", "download", model])
+            subprocess.call(["python3", "-m", "spacy", "download", model])
 
 
 def ensure_folders_exist(script_dir):
