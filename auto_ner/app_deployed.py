@@ -19,7 +19,24 @@ from spacy import displacy
 ## Load spaCy models from saved_models directory
 
 # Get absolute path to the current script's directory
+
+def ensure_folders_exist(script_dir):
+    images_path = os.path.join(script_dir, "images")
+    saved_model_path = os.path.join(script_dir, "saved_models")
+
+    # Create the 'images' directory if it doesn't exist
+    if not os.path.exists(images_path):
+        os.makedirs(images_path)
+
+    # Create the 'saved_model' directory if it doesn't exist
+    if not os.path.exists(saved_model_path):
+        os.makedirs(saved_model_path)
+
+# Get absolute path to the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Ensure that required folders exist
+ensure_folders_exist(script_dir)
 saved_models_dir = os.path.join(script_dir, "saved_models")
 nlp_models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"] + [os.path.join(saved_models_dir, f"{model_name}") for model_name in os.listdir(saved_models_dir)]
 
@@ -290,26 +307,8 @@ def gen_ai():
         st.write("---") 
         st.write(doc)
 
-
-def ensure_folders_exist(script_dir):
-    images_path = os.path.join(script_dir, "images")
-    saved_model_path = os.path.join(script_dir, "saved_models")
-
-    # Create the 'images' directory if it doesn't exist
-    if not os.path.exists(images_path):
-        os.makedirs(images_path)
-
-    # Create the 'saved_model' directory if it doesn't exist
-    if not os.path.exists(saved_model_path):
-        os.makedirs(saved_model_path)
-
 def main():
 
-    # Get absolute path to the current script's directory
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Ensure that required folders exist
-    ensure_folders_exist(script_dir)
     # Streamlit App
     st.set_page_config(page_title="NER Model Experimentation")
 
