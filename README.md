@@ -26,13 +26,14 @@ auto_ner.run --port 8080
 Above command can be used to specify the port on which you want to run the app.
 
 ## Application Workflow
-![](https://github.com/bokey007/auto_ner/blob/main/doc_images/Sudhir_NER_page-0005.jpg?raw=true)
+![](doc_images/Sudhir_NER_page-0005.jpg)
 
 ## System Architecture
 ![](https://github.com/bokey007/auto_ner/blob/main/doc_images/System%20Architecture.png?raw=true)
 
 ## Demo
 ![](https://github.com/bokey007/auto_ner/blob/main/doc_images/auto_ner.gif?raw=true)
+
 ## Solution is implemnted in following three steps 
 1. Create the baseline
     Spacy Model ([Transformer implementation on Hold])
