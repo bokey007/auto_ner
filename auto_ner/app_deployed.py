@@ -26,6 +26,7 @@ def ensure_spacy_models_installed():
     for model in models:
         try:
             # Try loading the model, this will raise an exception if it's not installed
+            print("before model loading")
             spacy.load(model)
             print("model loaded")
         except OSError:
