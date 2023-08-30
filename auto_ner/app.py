@@ -17,7 +17,10 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 from spacy import displacy
 
 ## Load spaCy models from saved_models directory
-saved_models_dir = "saved_models/"
+
+# Get absolute path to the current script's directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+saved_models_dir = os.path.join(script_dir, "saved_models")
 nlp_models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"] + [os.path.join(saved_models_dir, f"{model_name}") for model_name in os.listdir(saved_models_dir)]
 
 # fuction to load the csv file and extract sentences and tags
