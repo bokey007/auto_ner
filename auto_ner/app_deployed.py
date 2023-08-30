@@ -336,8 +336,12 @@ def main():
     if page == "Online Inference":
         online_inference()
     elif page == "Model Training":
+        st.warning("Because of limited compute resources this section will not work for this deployment")
+        st.warning("Ignore the error. This section will be demostrated with local deployemt")
         model_training()
     elif page == "GEN AI":
+        st.warning("Because of limited compute resources this section will not work for this deployment")
+        st.warning("Ignore the error. This section will be demostrated with local deployemt")
         gen_ai()
 
 
