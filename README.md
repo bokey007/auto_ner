@@ -32,7 +32,7 @@ Above command can be used to specify the port on which you want to run the app.
 ![](https://github.com/bokey007/auto_ner/blob/main/doc_images/System%20Architecture.png)
 
 ## Demo
-![](https://github.com/bokey007/auto_ner/blob/main/doc_images/auto_ner.gif)
+![](https://github.com/bokey007/auto_ner/blob/main/doc_images/auto_ner_corrected.gif)
 
 ## Solution is implemnted in following three steps 
 1. Create the baseline
