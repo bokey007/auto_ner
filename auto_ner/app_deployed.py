@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import datetime
 from transformers import AutoTokenizer, T5ForConditionalGeneration
 from spacy import displacy
+import subprocess
 
 ## Load spaCy models from saved_models directory
 
@@ -24,10 +25,12 @@ def ensure_spacy_models_installed():
     models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"]
     for model in models:
         try:
+            # Try loading the model, this will raise an exception if it's not installed
             spacy.load(model)
         except OSError:
             print(f"Installing {model}...")
-            spacy.cli.download(model)
+            subprocess.call(["python", "-m", "spacy", "download", model])
+
 
 def ensure_folders_exist(script_dir):
     images_path = os.path.join(script_dir, "images")
