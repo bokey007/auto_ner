@@ -146,6 +146,7 @@ def model_training():
 
             # Lists to store learning curve data
             train_losses = []
+            train_api_metrics = []
             val_precisions = []
             val_recalls = []
 
@@ -163,15 +164,17 @@ def model_training():
                     progress_percentage = batch_index / (total_batches + 1)
                     progress_bar.progress(progress_percentage)  # Display progress in Streamlit
                 train_losses.append(losses["ner"])
+                train_api_metrics.append(losses)
 
                 # Evaluate the model on the validation set
                 metrics = nlp.evaluate(val_examples)
                 val_precisions.append(metrics["ents_p"])
                 val_recalls.append(metrics["ents_r"])
 
-            # Append metrics to the ner_metrics list
-            ner_metrics.append(metrics)
-
+                # Append metrics to the ner_metrics list
+                ner_metrics.append(metrics)
+            print(val_precisions)
+            print(val_recalls)
             current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             save_model_name = f"{model_name_uniq}_ner_model_{current_time}"
             # Plot learning curve
@@ -207,7 +210,7 @@ def model_training():
                                        ]
             # Print model performance metrics
             st.write("---") 
-            st.subheader("Evaluation Metrics on validation data")
+            st.subheader("Evaluation Metrics on validation data (calculated during last epoch)")
             for model_name, metrics in zip([selected_model], ner_metrics):
                 st.write(f"Model: {model_name}")
                 for metric_name in ner_performance_metrics:
@@ -230,6 +233,12 @@ def model_training():
                 st.write(f"{metric_name}: {metric_value}")
 
             st.write("---")
+
+            st.write(train_api_metrics)
+            st.write("training metric list of dicts")
+            st.write(ner_metrics)
+            st.write("training metric list of dicts")
+            st.write(test_metrics)
 
         else:
             st.warning("Please upload training data in CSV format.")
