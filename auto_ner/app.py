@@ -21,12 +21,14 @@ from spacy import displacy
 # Get absolute path to the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 saved_models_dir = os.path.join(script_dir, "saved_models")
-nlp_models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"] + [os.path.join(saved_models_dir, f"{model_name}") for model_name in os.listdir(saved_models_dir)]
+nlp_models = ["en_core_web_sm", "en_core_web_md", "en_core_web_lg"] + [os.path.join(saved_models_dir, str(model_name)) for model_name in os.listdir(saved_models_dir)]
 
 # fuction to load the csv file and extract sentences and tags
 def load_data_from_csv(file):
     df = pd.read_csv(file, encoding="latin-1")
-    df.loc[:, "Sentence #"] = df["Sentence #"].fillna(method="ffill")
+    df = df.dropna()
+    #df.loc[:, "Sentence #"] = df["Sentence #"].fillna(method="ffill")
+    df.loc[:, "Sentence #"] = df["Sentence #"].ffill()
     sentences = df.groupby("Sentence #")["Word"].apply(list).values
     tags = df.groupby("Sentence #")["Tag"].apply(list).values
     return sentences, tags
@@ -184,24 +186,24 @@ def model_training():
             plt.ylabel("Loss")
             plt.title(f"Learning Curve for Model: {save_model_name}")
             plt.legend()
-            learning_curve_plot_path = f"learning_curve_{save_model_name}.png"
+            learning_curve_plot_path = f"images/learning_curve_{save_model_name}.png"
             plt.savefig(learning_curve_plot_path)
             st.image(learning_curve_plot_path)
 
-            # Plot Precision-Recall curve
-            plt.figure(figsize=(12, 4))
-            plt.plot(val_recalls, val_precisions, label="Precision-Recall Curve")
-            plt.xlabel("Recall")
-            plt.ylabel("Precision")
-            plt.title(f"Precision-Recall Curve for Model: {save_model_name}")
-            plt.legend()
-            pr_curve_plot_path = f"precision_recall_curve_{save_model_name}.png"
-            plt.savefig(pr_curve_plot_path)
-            st.image(pr_curve_plot_path)
+            # # Plot Precision-Recall curve  (Not straight forward with spacy therefore lets do Brert implementation)
+            # plt.figure(figsize=(12, 4))
+            # plt.plot(val_recalls, val_precisions, label="Precision-Recall Curve")
+            # plt.xlabel("Recall")
+            # plt.ylabel("Precision")
+            # plt.title(f"Precision-Recall Curve for Model: {save_model_name}")
+            # plt.legend()
+            # pr_curve_plot_path = f"images/precision_recall_curve_{save_model_name}.png"
+            # plt.savefig(pr_curve_plot_path)
+            # st.image(pr_curve_plot_path)
 
             # Save the trained model to disk with timestamp
-
-            nlp.to_disk(saved_models_dir + save_model_name)
+            
+            nlp.to_disk(os.path.join(saved_models_dir, str(save_model_name)))
             st.success(f"Trained model saved as: {save_model_name}")
 
             # Print important NER performance metrics
