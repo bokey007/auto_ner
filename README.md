@@ -6,6 +6,8 @@ Highlights:
 3. Training and inference pipelines
 4. `Auto_annotate` will take unlabeled text data and create labellied text data that can further be used for custom Named Entity Recognition (NER) Model training.
 
+### Chechout the Demo hosted at [Link](https://huggingface.co/spaces/bokey/auto_ner)
+
 ## Installation
 
 #### Pypi
