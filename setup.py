@@ -9,7 +9,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='auto_ner',
-    version='0.1.1',
+    version='0.1.2',
     author='Sudhir Arvind Deshmukh',
     description='End to End application for named entity recognition. Highlights: 1. Powerd by GenAi 2. Few shot Learning 3. Training and inference pipelines',
     long_description=long_description,

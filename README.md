@@ -4,12 +4,22 @@ Highlights:
 1. Powerd by GenAi 
 2. Few shot Learning 
 3. Training and inference pipelines
+4. `Auto_annotate` will take unlabeled text data and create labellied text data that can further be used for custom Named Entity Recognition (NER) Model training.
 
 ## Installation
+
+#### Pypi
 run following command in terminal
 ```bash
 pip install auto-ner
 ```
+
+#### From source
+Run following command in terminal
+1. ```git clone https://github.com/bokey007/auto_ner.git```
+2. ```cd auto_ner```
+3. ```python setup.py sdist bdist_wheel```
+4. ```pip install ./dist/auto_ner-0.1.2.tar.gz```
 
 ## Usage
 ```bash
